@@ -44,7 +44,9 @@ function filterByQuery(query, animalsArray) {
 
 function createNewAnimal(body, animalsArray) {
    const animal = body;
-   animalsArray.push(animal);
+  function animalsArray() {
+    let animalsArray = animalsArray.push(animal);
+  }
     fs.writeFileSync(
         path.join(__dirname, "./data/animals.json"),
         JSON.stringify({ animals: animalsArray }, null, 2)
@@ -103,8 +105,8 @@ app.post("/api/animals", (req, res) => {
     if (!validateAnimal(req.body)) {
         res.status(400).send("The animal is not properly formatted.")
     } else {
-    const animal = createNewAnimal(req.body)
-    res.json(animal)
+        const animal = createNewAnimal(req.body)
+        res.json(animal)
     }
 });
 
